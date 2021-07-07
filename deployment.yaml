@@ -1,21 +1,13 @@
----
 - hosts: all
+  gather_facts: false
+
   collections:
-    - kubernetes.core
+    - community.kubernetes
+
   tasks:
-  - name: Create a pod
-    k8s:
-      state: present
-      definition:
-        apiVersion: v1
-        kind: Pod
-        metadata:
-          name: jenkins
-          namespace: default
-          labels:
-            app: galaxy
-        spec:
-          containers:
-          - name: utilitypod
-            image: busybox
----
+    - name: Ensure the myapp Namespace exists.
+      k8s:
+        api_version: v1
+        kind: Namespace
+        name: myapp
+        state: present
