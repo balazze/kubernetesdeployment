@@ -1,0 +1,31 @@
+---
+- hosts: all
+  gather_facts: false
+  become: yes
+  tasks:
+    - name: create deployment
+      k8s:
+        state: present
+        definition:
+          apiVersion: apps/v1
+          kind: Deployment
+          metadata:
+            labels:
+              app: jenkins
+            name: jenkins
+            namespace: default
+          spec:
+            replicas: 1
+            selector:
+              matchLabels:
+                app: jenkins
+            template:
+              metadata:
+                labels:
+                  app: jenkins
+              spec:
+                containers:
+                - image: nginx
+                  imagePullPolicy: Always
+                  name: nginx
+---
