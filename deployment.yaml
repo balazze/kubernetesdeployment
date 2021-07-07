@@ -26,6 +26,5 @@
               spec:
                 containers:
                 - image: nginx
-                  imagePullPolicy: Always
-                  name: nginximage
+                  name: nginx
 ---
