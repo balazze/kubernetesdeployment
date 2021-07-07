@@ -27,5 +27,5 @@
                 containers:
                 - image: nginx
                   imagePullPolicy: Always
-                  name: nginx
+                  name: nginximage
 ---
